@@ -1,0 +1,14 @@
+{
+  "name": "myteam_cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tauri": "tauri",
+    "tauri:dev": "cargo tauri dev",
+    "tauri:build": "cargo tauri build"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,9 @@
+[package]
+name = "myteam_cli"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+warp = "0.3"
+tokio = { version = "1", features = ["full"] }
+tauri = { version = "1.0", features = ["api-all"] }
