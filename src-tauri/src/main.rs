@@ -30,9 +30,8 @@ impl AppState {
             initial_dir
         } else {
             env::current_dir().unwrap().display().to_string()
-        };
+        }; 
         println!("Current directory: {}", current_dir);
-
         AppState {
             current_dir: Arc::new(RwLock::new(current_dir)),
         }
@@ -119,19 +118,22 @@ fn main() {
     let app_state = AppState::new();  // Khởi tạo AppState với thư mục ban đầu là C:/Users nếu tồn tại
 
     // Chạy server warp trong thread riêng
-    let state_clone = app_state.clone(); // Clone state để chia sẻ giữa các thread
+    let tauri_state = app_state.clone(); // Create a clone for Tauri
     thread::spawn(move || {
         let rt = Runtime::new().unwrap();
         rt.block_on(async {
-            let cors = warp::cors()
-                .allow_any_origin()
-                .allow_methods(&[Method::GET, Method::POST])
-                .allow_headers(vec!["Content-Type"]);
+            let make_cors = || {
+                warp::cors()
+                    .allow_any_origin()
+                    .allow_methods(&[Method::GET, Method::POST])
+                    .allow_headers(vec!["Content-Type"])
+            };
+            let run_command_state = app_state.clone();
 
             let run_command = warp::path("run_command")
                 .and(warp::post())
                 .and(warp::body::json())
-                .and(warp::any().map(move || state_clone.clone())) // Truyền state vào warp
+                .and(warp::any().map(move || run_command_state.clone())) // Truyền state vào warp
                 .map(|input: Value, state: AppState| {
                     let command = input["input"].as_str().unwrap_or("");
 
@@ -161,9 +163,20 @@ fn main() {
                         warp::reply::json(&serde_json::json!({ "output": stdout }))
                     }
                 })
-                .with(cors);
+                .with(make_cors());
+            let get_current_dir_state = app_state.clone();
+            let get_current_dir = warp::path("get_current_dir")
+                .and(warp::get())
+                .and(warp::any().map(move || get_current_dir_state.clone()))
+                .map(|state: AppState| {
+                    let current_dir = state.get_current_directory();
+                    warp::reply::json(&serde_json::json!({ "current_dir": current_dir }))
+                })
+                .with(make_cors());
 
-            warp::serve(run_command)
+            let routes = run_command.or(get_current_dir);
+
+            warp::serve(routes)
                 .run(([127, 0, 0, 1], 3030))
                 .await;
         });
@@ -171,7 +184,7 @@ fn main() {
 
     // Khởi chạy ứng dụng Tauri
     tauri::Builder::default()
-        .manage(app_state) // Quản lý state trong Tauri
+        .manage(tauri_state) // Quản lý state trong Tauri
         .invoke_handler(tauri::generate_handler![run_command, change_directory])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

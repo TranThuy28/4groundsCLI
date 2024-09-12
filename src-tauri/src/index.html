@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: monospace;
-      background-color: black;
+        background-color: #011627;
       color: white;
       padding: 10px;
     }
@@ -18,12 +18,12 @@
       padding: 20px;
       height: 500px;
       overflow-y: auto;
-      background-color: black;
+      background-color: #011627;
       color: white;
     }
     #input {
       width: 80%;
-      background-color: black;
+      background-color: #011627;
       color: white;
       border: none;
       outline: none;
@@ -35,7 +35,6 @@
 </head>
 <body>
   <div class="terminal" id="terminal">
-    <div id="current-dir">C:\> </div> <!-- Hiển thị thư mục hiện tại -->
   </div>
   <input type="text" id="input" autofocus placeholder="Type command here...">
   
@@ -44,14 +43,26 @@
     const input = document.getElementById('input');
     const currentDirDisplay = document.getElementById('current-dir');
 
-    let currentDir = "C:\\";
-
+    
+    //let currentDir = "";
+    
     // Function to update the directory display
-    function updateDirectoryDisplay() {
-      currentDirDisplay.innerText = `${currentDir}> `;
+    function fetchCurrentDirectory() {
+      fetch('http://127.0.0.1:3030/get_current_dir')
+        .then(response => response.json())
+        .then(data => {
+          currentDir = data.current_dir;
+          currentDirDisplay.textContent = `${currentDir}> `;
+        })
+        .catch(err => {
+          console.error('Error fetching current directory:', err);
+        });
     }
 
-    updateDirectoryDisplay();
+    document.addEventListener('DOMContentLoaded', fetchCurrentDirectory);
+
+
+
 
     input.addEventListener('keydown', function(event) {
       if (event.key === 'Enter') {
@@ -59,8 +70,8 @@
         if (command.trim() === '') return;
 
         // Display the command in the terminal
-        terminal.innerHTML += `<div><span style="color:green;">${currentDir}> ${command}</span></div>`;
-        
+        terminal.innerHTML += `<div><span style="color:blue;">${currentDir}> ${command}</span></div>`;
+
         // Send the command to the backend
         fetch('http://127.0.0.1:3030/run_command', {
           method: 'POST',
@@ -71,13 +82,11 @@
         })
         .then(response => response.json())
         .then(result => {
-          // Handle success or error output
+          // Handle success or error outputn
+
           if (result.error) {
             terminal.innerHTML += `<div style="color:red;">${result.error}</div>`;
           } else {
-            // Check if the command was 'cd' and update currentDir
-            currentDir = result.output.trim(); // Update the directory from the backend
-            updateDirectoryDisplay(); // Update the directory in the UI
             terminal.innerHTML += `<div>${result.output}</div>`;
           }
           terminal.scrollTop = terminal.scrollHeight; // Auto-scroll to the bottom
