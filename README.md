@@ -1,2 +1,2 @@
 # 4groundsCLI
-A terminal emulator integrating with AI
+A terminal emulator integrated with AI
