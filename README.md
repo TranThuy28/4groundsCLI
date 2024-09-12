@@ -1,5 +1,6 @@
 # 4groundsCLI
 A terminal emulator integrated with AI
+
 Do chưa thể đóng gói ứng dụng, vui lòng sử dụng cách sau đây để khởi chạy:
 Đầu tiên phải đảm bảo bạn đã có [Rust](https://www.rust-lang.org/tools/install) và Tauri (cargo install tauri-cli) trên máy tính cá nhân.
 1. Clone repo về máy và cd vào thư mục src-tauri/src
