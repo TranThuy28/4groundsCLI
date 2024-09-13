@@ -37,11 +37,6 @@ impl AppState {
         }
         
     }
-
-    // Hàm thay đổi thư mục làm việc
-
-
-
     // Hàm lấy thư mục làm việc hiện tại
     fn get_current_directory(&self) -> String {
         let dir = self.current_dir.read().unwrap();

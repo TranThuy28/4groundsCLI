@@ -15,12 +15,12 @@
     }
     .terminal {
       width: 100%;
-      max-width: 900px;
+      max-width: 1300px;
       margin: 0 auto;
       border: 1px solid #1d3b53;
       border-radius: 6px;
       padding: 20px;
-      height: 70vh;
+      height: 80vh;
       overflow-y: auto;
       background-color: #011627;
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
@@ -71,6 +71,31 @@
       white-space: pre-wrap;
       word-break: break-all;
     }
+    .titlebar {
+      height: 50px;
+      background: #0d2843;
+      user-select: none;
+      display: flex;
+      justify-content: flex-end;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+    .titlebar-button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 35px;
+      height: 35px;
+    }
+    .titlebar-button:hover {
+      background: #5bbec3;
+    }
+    .fakebutton {
+      width: 100px;
+      height: 100px;
+    }
     .error {
       color: #ef5350;
       padding: 8px 12px;
@@ -103,13 +128,37 @@
   </style>
 </head>
 <body>
+  
+  <div data-tauri-drag-region class="titlebar">
+  <div class="titlebar-button" id="titlebar-minimize">
+    <img
+      src="https://api.iconify.design/mdi:window-minimize.svg"
+      alt="minimize"
+    />
+  </div>
+  <div class="titlebar-button" id="titlebar-maximize">
+    <img
+      src="https://api.iconify.design/mdi:window-maximize.svg"
+      alt="maximize"
+    />
+  </div>
+  <div class="titlebar-button" id="titlebar-close">
+    <img src="https://api.iconify.design/mdi:close.svg" alt="close" />
+  </div>
+</div>
   <div class="terminal" id="terminal"></div>
   <div id="input-container">
     <span id="current-dir"></span>
     <input type="text" id="input" autofocus placeholder="Type command here...">
   </div>
+  </div>
   
+
+
   <script>
+
+      
+
     const terminal = document.getElementById('terminal');
     const input = document.getElementById('input');
     const currentDirDisplay = document.getElementById('current-dir');
@@ -146,7 +195,6 @@
 
     document.addEventListener('DOMContentLoaded', fetchCurrentDirectory);
 
-
     // Xử lí sự kiện người dùng nhập lệnh 
     input.addEventListener('keydown', function(event) {
       if (event.key === 'Enter') {
@@ -175,8 +223,22 @@
         });
 
         input.value = '';
+
       }
     });
+
   </script>
+<script modules>
+    document
+      .getElementById('titlebar-minimize')
+      .addEventListener('click', () => window.__TAURI__.window.appWindow.minimize())
+    document
+      .getElementById('titlebar-maximize')
+      .addEventListener('click', () => window.__TAURI__.window.appWindow.maximize())
+    document
+      .getElementById('titlebar-close')
+      .addEventListener('click', () => window.__TAURI__.window.appWindow.close())
+</script>
+
 </body>
 </html>
