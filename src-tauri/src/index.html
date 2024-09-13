@@ -146,11 +146,14 @@
 
     document.addEventListener('DOMContentLoaded', fetchCurrentDirectory);
 
+
+    // Xử lí sự kiện người dùng nhập lệnh 
     input.addEventListener('keydown', function(event) {
       if (event.key === 'Enter') {
         const command = input.value;
         if (command.trim() === '') return;
-
+        
+         
         fetch('http://127.0.0.1:3030/run_command', {
           method: 'POST',
           headers: {
