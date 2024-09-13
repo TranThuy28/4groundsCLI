@@ -3,50 +3,118 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CLI Interface</title>
+  <title>Night Owl CLI Interface</title>
   <style>
     body {
-      font-family: monospace;
-        background-color: #011627;
-      color: white;
-      padding: 10px;
+      font-family: 'Fira Code', monospace;
+      background-color: #011627;
+      color: #d6deeb;
+      padding: 20px;
+      margin: 0;
+      font-size: 14px;
     }
     .terminal {
-      width: 80%;
+      width: 100%;
+      max-width: 900px;
       margin: 0 auto;
-      border: 1px solid #333;
+      border: 1px solid #1d3b53;
+      border-radius: 6px;
       padding: 20px;
-      height: 500px;
+      height: 70vh;
       overflow-y: auto;
       background-color: #011627;
-      color: white;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
     }
-    #input {
-      width: 80%;
-      background-color: #011627;
-      color: white;
-      border: none;
-      outline: none;
+    #input-container {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 900px;
+      margin: 20px auto 0;
+      background-color: #0b2942;
+      border-radius: 4px;
+      padding: 8px 12px;
+      box-sizing: border-box;
     }
     #current-dir {
-      color: lightgreen;
+      color: #82aaff;
+      margin-right: 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    #input {
+      flex-grow: 1;
+      background-color: transparent;
+      color: #d6deeb;
+      border: none;
+      outline: none;
+      font-family: 'Fira Code', monospace;
+      font-size: 14px;
+    }
+    .command-block {
+      margin-bottom: 20px;
+      border: 1px solid #1d3b53;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .command {
+      background-color: #0b2942;
+      color: #c792ea;
+      padding: 8px 12px;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .output {
+      color: #d6deeb;
+      padding: 8px 12px;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .error {
+      color: #ef5350;
+      padding: 8px 12px;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0b2942;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: #1d3b53;
+      border-radius: 6px;
+      border: 3px solid #0b2942;
+    }
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+        font-size: 12px;
+      }
+      .terminal {
+        padding: 10px;
+      }
+      #input-container {
+        padding: 6px 8px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="terminal" id="terminal">
+  <div class="terminal" id="terminal"></div>
+  <div id="input-container">
+    <span id="current-dir"></span>
+    <input type="text" id="input" autofocus placeholder="Type command here...">
   </div>
-  <input type="text" id="input" autofocus placeholder="Type command here...">
   
   <script>
     const terminal = document.getElementById('terminal');
     const input = document.getElementById('input');
     const currentDirDisplay = document.getElementById('current-dir');
+    let currentDir = '';
 
-    
-    //let currentDir = "";
-    
-    // Function to update the directory display
     function fetchCurrentDirectory() {
       fetch('http://127.0.0.1:3030/get_current_dir')
         .then(response => response.json())
@@ -59,20 +127,30 @@
         });
     }
 
+    function createCommandBlock(command, output, isError = false) {
+      const block = document.createElement('div');
+      block.className = 'command-block';
+
+      const commandElement = document.createElement('div');
+      commandElement.className = 'command';
+      commandElement.textContent = `${currentDir}> ${command}`;
+      block.appendChild(commandElement);
+
+      const outputElement = document.createElement('div');
+      outputElement.className = isError ? 'error' : 'output';
+      outputElement.textContent = output;
+      block.appendChild(outputElement);
+
+      return block;
+    }
+
     document.addEventListener('DOMContentLoaded', fetchCurrentDirectory);
-
-
-
 
     input.addEventListener('keydown', function(event) {
       if (event.key === 'Enter') {
         const command = input.value;
         if (command.trim() === '') return;
 
-        // Display the command in the terminal
-        terminal.innerHTML += `<div><span style="color:blue;">${currentDir}> ${command}</span></div>`;
-
-        // Send the command to the backend
         fetch('http://127.0.0.1:3030/run_command', {
           method: 'POST',
           headers: {
@@ -82,20 +160,17 @@
         })
         .then(response => response.json())
         .then(result => {
-          // Handle success or error outputn
-
-          if (result.error) {
-            terminal.innerHTML += `<div style="color:red;">${result.error}</div>`;
-          } else {
-            terminal.innerHTML += `<div>${result.output}</div>`;
-          }
-          terminal.scrollTop = terminal.scrollHeight; // Auto-scroll to the bottom
+          const block = createCommandBlock(command, result.output || result.error, !!result.error);
+          terminal.appendChild(block);
+          terminal.scrollTop = terminal.scrollHeight;
+          fetchCurrentDirectory();
         })
         .catch(err => {
-          terminal.innerHTML += `<div style="color:red;">Error: ${err}</div>`;
+          const block = createCommandBlock(command, `Error: ${err}`, true);
+          terminal.appendChild(block);
+          terminal.scrollTop = terminal.scrollHeight;
         });
 
-        // Clear the input
         input.value = '';
       }
     });
