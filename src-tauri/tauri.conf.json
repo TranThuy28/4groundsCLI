@@ -19,6 +19,14 @@
         "setMinimizable": true,
         "setClosable": true,
         "startDragging": true
+      },
+      "dialog": {
+        "all": true,
+        "ask": true,
+        "confirm": true,
+        "message": true,
+        "open": true,
+        "save": true
       }
     },
     "bundle": {

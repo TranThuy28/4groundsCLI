@@ -70,7 +70,7 @@
 
     }
     .titlebar-buttons {
-      padding = 0 10px;
+      padding: 0 10px;
       display: flex;
     }
     .titlebar-button, .custom-button {
@@ -96,10 +96,10 @@
   <div class="container-fluid vh-100 d-flex flex-column">
     <div data-tauri-drag-region class="titlebar">
       <div class="custom-buttons"> 
-          <div class="custom-button" id="ai_agent">
+          <!-- <div class="custom-button" id="ai_agent">
              <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMzAgMzAiPjxwYXRoIGZpbGw9IndoaXRlIiBkPSJNNS4zNyAxNi4xOHEuOTc1LS4wNDUgMS42NS0uNzVjLjQ1LS40Ny42OC0xLjAzLjY4LTEuNjhjMCAuNjUuMjIgMS4yMS42NyAxLjY4cS42NzUuNzA1IDEuNjUuNzVxLS45NzUuMDQ1LTEuNjUuNzVhMi4zNCAyLjM0IDAgMCAwLS42NyAxLjY4YzAtLjY1LS4yMi0xLjIxLS42OC0xLjY4cS0uNjc1LS43MDUtMS42NS0uNzVtMi4zMy03LjJxMS44OS0uMDkgMy4yMS0xLjQ3Yy44OC0uOTIgMS4zMi0yLjAxIDEuMzItMy4yOGMwIDEuMjcuNDQgMi4zNiAxLjMyIDMuMjhzMS45NSAxLjQgMy4yMiAxLjQ3Yy0uODMuMDQtMS41OS4yNy0yLjI5LjcxYy0uNjkuNDMtMS4yNCAxLjAxLTEuNjUgMS43M2MtLjQuNzItLjYgMS40OS0uNiAyLjMzYzAtMS4yNy0uNDQtMi4zNy0xLjMyLTMuMjljLS44OC0uOTMtMS45NS0xLjQyLTMuMjEtMS40OG0zLjMyIDEwLjc3Yy45NS0uMDQgMS43Ni0uNDEgMi40Mi0xLjFzLjk5LTEuNTEuOTktMi40N2MwIC45Ni4zMyAxLjc4Ljk5IDIuNDdzMS40NiAxLjA2IDIuNDEgMS4xYy0uOTUuMDQtMS43NS40MS0yLjQxIDEuMXMtLjk5IDEuNTEtLjk5IDIuNDdjMC0uOTYtLjMzLTEuNzgtLjk5LTIuNDdhMy41IDMuNSAwIDAgMC0yLjQyLTEuMW02LjgxLTQuNzRjLjk1LS4wNCAxLjc1LS40MSAyLjQxLTEuMXMuOTgtMS41MS45OC0yLjQ4YzAgLjk2LjMzIDEuNzguOTkgMi40N3MxLjQ3IDEuMDYgMi40MiAxLjFjLS45NS4wNC0xLjc2LjQxLTIuNDIgMS4xcy0uOTkgMS41MS0uOTkgMi40N2MwLS45Ni0uMzMtMS43OC0uOTgtMi40N2MtLjY2LS42OC0xLjQ2LTEuMDUtMi40MS0xLjA5Ii8+PC9zdmc+" alt="ai_agent" width="35" height="35">
 
-          </div>
+          </div> -->
       </div>
       <div class="titlebar-buttons">
         <div class="titlebar-button" id="titlebar-minimize">
@@ -122,14 +122,15 @@
       <span id="current-dir"></span>
       <input type="text" id="input" class="form-control" autofocus placeholder="Type command here...">
     </div>
-  </div>
+  
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
+  <script module>
     const terminal = document.getElementById('terminal');
     const input = document.getElementById('input');
     const currentDirDisplay = document.getElementById('current-dir');
     let currentDir = '';
+
 
     function fetchCurrentDirectory() {
       fetch('http://127.0.0.1:3030/get_current_dir')
@@ -159,37 +160,98 @@
 
       return block;
     }
-
-    document.addEventListener('DOMContentLoaded', fetchCurrentDirectory);
-
-    input.addEventListener('keydown', function(event) {
-      if (event.key === 'Enter') {
-        const command = input.value;
-        if (command.trim() === '') return;
-        
-        fetch('http://127.0.0.1:3030/run_command', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ input: command }),
+    
+    function checkObfuscation(command) {
+        return fetch('http://127.0.0.1:5000/classify', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ commands: [command] })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok.');
+            }
+            return response.json();
+        })
+        .then(result => {
+            return result.classifications[0] === 1; 
+        })
+        .catch(err => {
+            console.error('Obfuscation Detection Error:', err);
+            terminal.innerHTML += `<div style="color:red;">Obfuscation Detection Error: ${err.message}</div>`;
+            return false;
+        });
+    }
+   // Send command to FastAPI auto endpoint
+     function sendToAutoAPI(command) {
+        fetch('http://127.0.0.1:8000/auto/', {  // Replace with your actual API endpoint
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ question: command })
         })
         .then(response => response.json())
         .then(result => {
-          const block = createCommandBlock(command, result.output || result.error, !!result.error);
-          terminal.appendChild(block);
-          terminal.scrollTop = terminal.scrollHeight;
-          fetchCurrentDirectory();
+            if (result.answer) {
+                terminal.innerHTML += `<div style="color:blue;">${result.answer}</div>`;
+            } else {
+                terminal.innerHTML += `<div style="color:red;">No suggestion available</div>`;
+            }
+            terminal.scrollTop = terminal.scrollHeight; // Auto-scroll to the bottom
         })
         .catch(err => {
-          const block = createCommandBlock(command, `Error: ${err}`, true);
-          terminal.appendChild(block);
-          terminal.scrollTop = terminal.scrollHeight;
+            terminal.innerHTML += `<div style="color:red;">Auto Suggest Error: ${err}</div>`;
         });
+    }
+    
 
-        input.value = '';
+    document.addEventListener('DOMContentLoaded', fetchCurrentDirectory);
+            input.addEventListener('keydown', async function(event) {
+      if (event.key === 'Enter') {
+        let run_flag = true;
+        const command = input.value;
+        const isObfuscated = await checkObfuscation(command);
+        if (isObfuscated) {
+          const result = await confirm('This command is obfuscated, which means it is potentially risky. Are you sure to execute the command ?');
+          if (!result) { // yes
+            run_flag = false;
+            input.value = '';
+          }
+        }
+
+        <!-- if (command.trim().startsWith('#')) {} -->
+
+
+
+        if (run_flag) {
+          fetch('http://127.0.0.1:3030/run_command', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ input: command }),
+          })
+          .then(response => response.json())
+          .then(result => {
+            const block = createCommandBlock(command, result.output || result.error, !!result.error);
+            terminal.appendChild(block);
+            terminal.scrollTop = terminal.scrollHeight;
+            fetchCurrentDirectory();
+          })
+          .catch(err => {
+            const block = createCommandBlock(command, `Error: ${err}`, true);
+            terminal.appendChild(block);
+            terminal.scrollTop = terminal.scrollHeight;
+          });
+
+          input.value = '';
+        }
       }
     });
+
   </script>
   <script>
     document
@@ -203,12 +265,5 @@
       .addEventListener('click', () => window.__TAURI__.window.appWindow.close())
   </script>
 
-  <script>
-    const ai_agent = document.getElementById('ai_agent')
-    ai_agent.addEventListener('click',
-    () => //some event here 
-    
-    )
-  </script>
 </body>
 </html>
