@@ -10,5 +10,11 @@
     "tauri:build": "cargo tauri build"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@tauri-apps/api": "^1.6.0"
+  },
+  "devDependencies": {
+    "@tauri-apps/api": "^1.6.0"
+  }
 }

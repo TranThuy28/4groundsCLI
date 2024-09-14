@@ -1,7 +1,8 @@
 {
   "build": {
     "devPath": " http://127.0.0.1:8080/./index.html",
-    "distDir": "src/index.html"
+    "distDir": "src/index.html",
+    "withGlobalTauri": true
   },
   "package": {
     "productName": "4Grounds CLI",
@@ -9,7 +10,16 @@
   },
   "tauri": {
     "allowlist": {
-      "all": false
+      "window": {
+        "all": true,
+        "create": true,
+        "center": true,
+        "setResizable": true,
+        "setMaximizable": true,
+        "setMinimizable": true,
+        "setClosable": true,
+        "startDragging": true
+      }
     },
     "bundle": {
       "active": true,
@@ -44,19 +54,18 @@
         "timestampUrl": ""
       }
     },
-    "security": {
-      "csp": null
-    },
+    "security": {},
     "updater": {
       "active": false
     },
     "windows": [
       {
         "fullscreen": false,
-        "height": 600,
+        "height": 800,
         "resizable": true,
         "title": "4Grounds CLI",
-        "width": 800
+        "width": 1200,
+        "decorations": false
       }
     ]
   }
