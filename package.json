@@ -10,5 +10,8 @@
     "tauri:build": "cargo tauri build"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "requirement": "^0.0.8"
+  }
 }

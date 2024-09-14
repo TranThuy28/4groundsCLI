@@ -3,93 +3,266 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CLI Interface</title>
+  <title>Night Owl CLI Interface</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
-      font-family: monospace;
-      background-color: black;
-      color: white;
-      padding: 10px;
+      font-family: 'Fira Code', monospace;
+      background-color: #011627;
+      color: #d6deeb;
+    }
+    .terminal-wrapper {
+      height: calc(100vh - 10px); /* Adjust based on your titlebar height and desired margins */
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .terminal {
-      width: 80%;
-      margin: 0 auto;
-      border: 1px solid #333;
-      padding: 20px;
-      height: 500px;
+      width: 100%;
+      max-width: 1100px; /* Adjust as needed */
+      height: 80vh;
+      border: 1px solid #1d3b53;
       overflow-y: auto;
-      background-color: black;
-      color: white;
+      background-color: #011627;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
     }
+    #input-container {
+      background-color: #0b2942;
+      max-width: 1100px; /* Increased to match the terminal width */
+      width: 100%; /* Ensure it takes full width of its parent */
+      margin: 20px auto 0;
+      display: flex; /* Corrected typo from 'displayu' */
+      padding: 10px; /* Added padding for better appearance */
+    }
+      #current-dir {
+        color: #82aaff;
+        white-space: nowrap; /* Prevent wrapping of directory path */
+      }
     #input {
-      width: 80%;
-      background-color: black;
-      color: white;
+      background-color: transparent;
+      color: #d6deeb;
       border: none;
-      outline: none;
+      flex: 1; /* Changed from flex: 2 to take remaining space */
+      margin-left: 10px; /* Add some space between directory and input */
     }
-    #current-dir {
-      color: lightgreen;
+    .command-block {
+      border: 1px solid #011627;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .command {
+      background-color: #0b2942;
+      color: #c792ea;
+    }
+    .output {
+      color: #d6deeb;
+    }
+    .error {
+      color: #ef5350;
+    }
+    .titlebar {
+      background: #011627;
+      user-select: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #09416d;
+
+    }
+    .titlebar-buttons {
+      padding: 0 10px;
+      display: flex;
+    }
+    .titlebar-button, .custom-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      margin-left: 5px;
+      cursor: pointer;
+    }
+    .titlebar-button:hover, .custom-button:hover {
+      background: #5bbec3;
+    }
+    .custom-button {
+      color: #d6deeb;
+      font-size: 14px;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <div class="terminal" id="terminal">
-    <div id="current-dir">C:\> </div> <!-- Hiển thị thư mục hiện tại -->
+  <div class="container-fluid vh-100 d-flex flex-column">
+    <div data-tauri-drag-region class="titlebar">
+      <div class="custom-buttons"> 
+          <div class="custom-button" id="ai_agent">
+             <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMzAgMzAiPjxwYXRoIGZpbGw9IndoaXRlIiBkPSJNNS4zNyAxNi4xOHEuOTc1LS4wNDUgMS42NS0uNzVjLjQ1LS40Ny42OC0xLjAzLjY4LTEuNjhjMCAuNjUuMjIgMS4yMS42NyAxLjY4cS42NzUuNzA1IDEuNjUuNzVxLS45NzUuMDQ1LTEuNjUuNzVhMi4zNCAyLjM0IDAgMCAwLS42NyAxLjY4YzAtLjY1LS4yMi0xLjIxLS42OC0xLjY4cS0uNjc1LS43MDUtMS42NS0uNzVtMi4zMy03LjJxMS44OS0uMDkgMy4yMS0xLjQ3Yy44OC0uOTIgMS4zMi0yLjAxIDEuMzItMy4yOGMwIDEuMjcuNDQgMi4zNiAxLjMyIDMuMjhzMS45NSAxLjQgMy4yMiAxLjQ3Yy0uODMuMDQtMS41OS4yNy0yLjI5LjcxYy0uNjkuNDMtMS4yNCAxLjAxLTEuNjUgMS43M2MtLjQuNzItLjYgMS40OS0uNiAyLjMzYzAtMS4yNy0uNDQtMi4zNy0xLjMyLTMuMjljLS44OC0uOTMtMS45NS0xLjQyLTMuMjEtMS40OG0zLjMyIDEwLjc3Yy45NS0uMDQgMS43Ni0uNDEgMi40Mi0xLjFzLjk5LTEuNTEuOTktMi40N2MwIC45Ni4zMyAxLjc4Ljk5IDIuNDdzMS40NiAxLjA2IDIuNDEgMS4xYy0uOTUuMDQtMS43NS40MS0yLjQxIDEuMXMtLjk5IDEuNTEtLjk5IDIuNDdjMC0uOTYtLjMzLTEuNzgtLjk5LTIuNDdhMy41IDMuNSAwIDAgMC0yLjQyLTEuMW02LjgxLTQuNzRjLjk1LS4wNCAxLjc1LS40MSAyLjQxLTEuMXMuOTgtMS41MS45OC0yLjQ4YzAgLjk2LjMzIDEuNzguOTkgMi40N3MxLjQ3IDEuMDYgMi40MiAxLjFjLS45NS4wNC0xLjc2LjQxLTIuNDIgMS4xcy0uOTkgMS41MS0uOTkgMi40N2MwLS45Ni0uMzMtMS43OC0uOTgtMi40N2MtLjY2LS42OC0xLjQ2LTEuMDUtMi40MS0xLjA5Ii8+PC9zdmc+" alt="ai_agent" width="35" height="35">
+
+          </div>
+      </div>
+      <div class="titlebar-buttons">
+        <div class="titlebar-button" id="titlebar-minimize">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxLjJyZW0iIGhlaWdodD0iMS4ycmVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IndoaXRlIiBkPSJNNiAyMXYtMmgxMnYyeiIvPjwvc3ZnPg==" alt="minimize" width="20" height="20" color=white>
+        </div>
+        <div class="titlebar-button" id="titlebar-maximize">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxLjJyZW0iIGhlaWdodD0iMS4ycmVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IndoaXRlIiBkPSJNMjEgMkgzYTEgMSAwIDAgMC0xIDF2MThhMSAxIDAgMCAwIDEgMWgxOGExIDEgMCAwIDAgMS0xVjNhMSAxIDAgMCAwLTEtMW0tMSAxOEg0VjEwaDE2Wm0wLTEySDRWNGgxNloiLz48L3N2Zz4=" alt="maximize" width="20" height="20">
+        </div>
+        <div class="titlebar-button" id="titlebar-close">
+          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxLjJyZW0iIGhlaWdodD0iMS4ycmVtIiB2aWV3Qm94PSIwIDAgNDggNDgiPjxkZWZzPjxtYXNrIGlkPSJpcFNDbG9zZU9uZTAiPjxnIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iNCI+PHBhdGggZmlsbD0iI2ZmZiIgc3Ryb2tlPSIjZmZmIiBkPSJNMjQgNDRjMTEuMDQ2IDAgMjAtOC45NTQgMjAtMjBTMzUuMDQ2IDQgMjQgNFM0IDEyLjk1NCA0IDI0czguOTU0IDIwIDIwIDIwWiIvPjxwYXRoIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBkPSJNMjkuNjU3IDE4LjM0M0wxOC4zNDMgMjkuNjU3bTAtMTEuMzE0bDExLjMxNCAxMS4zMTQiLz48L2c+PC9tYXNrPjwvZGVmcz48cGF0aCBmaWxsPSJ3aGl0ZSIgZD0iTTAgMGg0OHY0OEgweiIgbWFzaz0idXJsKCNpcFNDbG9zZU9uZTApIi8+PC9zdmc+" alt="close" width="20" height="20">
+        </div>
+      </div>
+    </div>
+    
+    <div class="terminal-wrapper">
+      <div class="terminal p-3" id="terminal"></div>
+    </div>
+    
+    <div id="input-container" class="d-flex align-items-center mb-3">
+      <span id="current-dir"></span>
+      <input type="text" id="input" class="form-control" autofocus placeholder="Type command here...">
+    </div>
   </div>
-  <input type="text" id="input" autofocus placeholder="Type command here...">
-  
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     const terminal = document.getElementById('terminal');
     const input = document.getElementById('input');
     const currentDirDisplay = document.getElementById('current-dir');
+    let currentDir = '';
 
-    let currentDir = "C:\\";
 
-    // Function to update the directory display
-    function updateDirectoryDisplay() {
-      currentDirDisplay.innerText = `${currentDir}> `;
+    function fetchCurrentDirectory() {
+      fetch('http://127.0.0.1:3030/get_current_dir')
+        .then(response => response.json())
+        .then(data => {
+          currentDir = data.current_dir;
+          currentDirDisplay.textContent = `${currentDir}> `;
+        })
+        .catch(err => {
+          console.error('Error fetching current directory:', err);
+        });
     }
 
-    updateDirectoryDisplay();
+    function createCommandBlock(command, output, isError = false) {
+      const block = document.createElement('div');
+      block.className = 'command-block mb-3';
 
-    input.addEventListener('keydown', function(event) {
-      if (event.key === 'Enter') {
-        const command = input.value;
-        if (command.trim() === '') return;
+      const commandElement = document.createElement('div');
+      commandElement.className = 'command p-2';
+      commandElement.textContent = `${currentDir}> ${command}`;
+      block.appendChild(commandElement);
 
-        // Display the command in the terminal
-        terminal.innerHTML += `<div><span style="color:green;">${currentDir}> ${command}</span></div>`;
-        
-        // Send the command to the backend
-        fetch('http://127.0.0.1:3030/run_command', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ input: command }),
+      const outputElement = document.createElement('div');
+      outputElement.className = isError ? 'error p-2' : 'output p-2';
+      outputElement.textContent = output;
+      block.appendChild(outputElement);
+
+      return block;
+    }
+    
+    function checkObfuscation(command) {
+        return fetch('http://127.0.0.1:5000/classify', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ commands: [command] })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok.');
+            }
+            return response.json();
+        })
+        .then(result => {
+            return result.classifications[0] === 1; // Return true if obfuscated
+        })
+        .catch(err => {
+            console.error('Obfuscation Detection Error:', err);
+            terminal.innerHTML += `<div style="color:red;">Obfuscation Detection Error: ${err.message}</div>`;
+            return false;
+        });
+    }
+
+
+     // Send command to FastAPI auto endpoint
+     function sendToAutoAPI(command) {
+        fetch('http://127.0.0.1:8000/auto/', {  // Replace with your actual API endpoint
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ question: command })
         })
         .then(response => response.json())
         .then(result => {
-          // Handle success or error output
-          if (result.error) {
-            terminal.innerHTML += `<div style="color:red;">${result.error}</div>`;
-          } else {
-            // Check if the command was 'cd' and update currentDir
-            currentDir = result.output.trim(); // Update the directory from the backend
-            updateDirectoryDisplay(); // Update the directory in the UI
-            terminal.innerHTML += `<div>${result.output}</div>`;
-          }
-          terminal.scrollTop = terminal.scrollHeight; // Auto-scroll to the bottom
+            if (result.answer) {
+                terminal.innerHTML += `<div style="color:blue;">${result.answer}</div>`;
+            } else {
+                terminal.innerHTML += `<div style="color:red;">No suggestion available</div>`;
+            }
+            terminal.scrollTop = terminal.scrollHeight; // Auto-scroll to the bottom
         })
         .catch(err => {
-          terminal.innerHTML += `<div style="color:red;">Error: ${err}</div>`;
+            terminal.innerHTML += `<div style="color:red;">Auto Suggest Error: ${err}</div>`;
         });
+    }
+    
+    document.addEventListener('DOMContentLoaded', fetchCurrentDirectory);
 
-        // Clear the input
-        input.value = '';
+    input.addEventListener('keydown', async function(event) {
+      if (event.key === 'Enter') {
+          const command = input.value;
+          if (command.trim() === '') return;
+
+          // Hiển thị lệnh trong terminal
+          terminal.innerHTML += `<div><span style="color:green;">${currentDir}> ${command}</span></div>`;
+
+          const isObfuscated = await checkObfuscation(command);
+            if (isObfuscated) {
+                terminal.innerHTML += `<div style="color:red;">Warning: Command detected as potentially obfuscated!</div>`;
+            } else {
+         
+              // Gửi lệnh đến API gợi ý tự động
+              await sendToAutoAPI(command);
+              // Gửi lệnh để chạy command API
+              const response = await fetch('http://127.0.0.1:3030/run_command', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({ input: command }),
+              });
+              const result = await response.json();
+              const block = createCommandBlock(command, result.output || result.error, !!result.error);
+              terminal.appendChild(block);
+              terminal.scrollTop = terminal.scrollHeight;
+              fetchCurrentDirectory();
+            }
+          terminal.scrollTop = terminal.scrollHeight; // Auto-scroll to the bottom
+          input.value = '';
       }
+       
+      
     });
+  </script>
+  <script>
+    document
+      .getElementById('titlebar-minimize')
+      .addEventListener('click', () => window.__TAURI__.window.appWindow.minimize())
+    document
+      .getElementById('titlebar-maximize')
+      .addEventListener('click', () => window.__TAURI__.window.appWindow.maximize())
+    document
+      .getElementById('titlebar-close')
+      .addEventListener('click', () => window.__TAURI__.window.appWindow.close())
+  </script>
+
+  <script>
+    const ai_agent = document.getElementById('ai_agent')
+    ai_agent.addEventListener('click',() => //some event here 
+  ) 
   </script>
 </body>
 </html>

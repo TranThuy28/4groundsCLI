@@ -24,7 +24,7 @@ impl AppState {
     // Tạo một hàm khởi tạo mới cho AppState
     fn new() -> Self {
         // Đặt thư mục khởi tạo ban đầu là C:/Users
-        let initial_dir = "C:/Users/lanhu".to_string();
+        let initial_dir = "C:/Users/Admin".to_string();
         // Kiểm tra nếu thư mục tồn tại, sử dụng nó, nếu không thì dùng thư mục hiện tại của hệ thống
         let current_dir = if Path::new(&initial_dir).exists() {
             initial_dir
