@@ -7,4 +7,4 @@ commands = ['cmd.exe /c "echo Invoke-DOSfuscation"',
 classifications = oc(commands)
 
 # 1 is obfuscated, 0 is non-obfuscated
-print(classifications) 
+print(classifications) # [0, 1, 0]

