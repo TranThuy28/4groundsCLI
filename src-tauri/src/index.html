@@ -90,6 +90,25 @@
       font-size: 14px;
       font-weight: bold;
     }
+      #suggestions-container {
+      background-color: #0b2942;
+      color: #d6deeb;
+      border-top: 1px solid #1d3b53;
+      padding: 10px;
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      display: none; /* Hidden by default */
+    }
+
+    .suggestion {
+      padding: 5px;
+      cursor: pointer;
+    }
+
+    .suggestion:hover {
+      background-color: #1d3b53;
+    }
   </style>
 </head>
 <body>
@@ -114,7 +133,7 @@
       </div>
     </div>
     
-    <div class="terminal-wrapper">
+    <div class="terminal-wrapper" id="terminal_wrapper">
       <div class="terminal p-3" id="terminal"></div>
     </div>
     
@@ -130,7 +149,8 @@
     const input = document.getElementById('input');
     const currentDirDisplay = document.getElementById('current-dir');
     let currentDir = '';
-
+    let suggestions = [];
+    const suggestionsContainer = document.getElementById('suggestions-container');
 
     function fetchCurrentDirectory() {
       fetch('http://127.0.0.1:3030/get_current_dir')
@@ -206,13 +226,81 @@
             terminal.innerHTML += `<div style="color:red;">Auto Suggest Error: ${err}</div>`;
         });
     }
-    
+  // Create the content for the popup
+function createPopup() {
+  // Create a new window
+  const popupWindow = window.open('', 'Night Owl Popup', 'width=300,height=200');
+
+
+
+  // Create the content for the popup
+  const popupContent = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Night Owl Popup</title>
+      <style>
+        body {
+          font-family: 'Consolas', 'Courier New', monospace;
+          padding: 20px;
+          background-color: #011627;
+          color: #d6deeb;
+        }
+        .block {
+          margin-bottom: 20px;
+        }
+        .text-box {
+          width: 100%;
+          padding: 10px;
+          background-color: #01121f;
+          border: 1px solid #1d3b53;
+          color: #d6deeb;
+          font-family: inherit;
+          font-size: 14px;
+          resize: vertical;
+        }
+        .text-box::placeholder {
+          color: #4b6479;
+        }
+        .result {
+          background-color: #01121f;
+          border: 1px solid #1d3b53;
+          padding: 10px;
+        }
+        .result strong {
+          color: #c792ea;
+        }
+        .result span {
+          color: #addb67;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="block">
+        <textarea class="text-box" rows="3" placeholder="Enter text here"></textarea>
+      </div>
+      <div class="block">
+        <div class="result">
+          <strong>Result:</strong> <span>meow</span>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
+
+  // Write the content to the popup window
+  popupWindow.document.write(popupContent);
+  popupWindow.document.close();
+}
+
 
     document.addEventListener('DOMContentLoaded', fetchCurrentDirectory);
-            input.addEventListener('keydown', async function(event) {
+      input.addEventListener('keydown', async function(event) {
+      const command = input.value;
       if (event.key === 'Enter') {
         let run_flag = true;
-        const command = input.value;
         const isObfuscated = await checkObfuscation(command);
         if (isObfuscated) {
           const result = await confirm('This command is obfuscated, which means it is potentially risky. Are you sure to execute the command ?');
@@ -221,11 +309,6 @@
             input.value = '';
           }
         }
-
-        <!-- if (command.trim().startsWith('#')) {} -->
-
-
-
         if (run_flag) {
           fetch('http://127.0.0.1:3030/run_command', {
             method: 'POST',
@@ -249,8 +332,28 @@
 
           input.value = '';
         }
+      } else if (event.key === 'Tab') {
+
+        if (command.trim().startsWith('#')) {
+          terminal.innerHTML += `<div style="color:red;">meow</div>`;
+          /// vao duo
+          
+          block = createPopup()
+
+          terminal.innerHTML += `<div style="color:red;">meow</div>`;
+
+          
+        }
+                  
+          
+          
+        }
+
       }
-    });
+         
+  
+    
+    );
 
   </script>
   <script>

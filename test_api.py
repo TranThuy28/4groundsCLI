@@ -1,16 +1,17 @@
 import requests
 
-# Use the exact ngrok URL with the /predict endpoint
-url = 'https://132e-34-87-145-67.ngrok-free.app/predict'  # Append /predict to the ngrok URL
+# Use the exact ngrok URL with the /predict endpoint appended
+url = 'https://58a8-34-87-145-67.ngrok-free.app/predict'  # Ensure /predict is added at the end
 
-# Define the message you want to send to the model
-messages = [
-    {"role": "user", "content": "calculate 1+1."}
-]
+# Define the question you want to send to the model
+question = "what is git clone?"
+
+# Prepare the payload
+payload = {"question": question}
 
 # Send a POST request to the Colab API
 try:
-    response = requests.post(url, json={"messages": messages})
+    response = requests.post(url, json=payload)
     
     # Check if the response is successful
     if response.status_code == 200:
