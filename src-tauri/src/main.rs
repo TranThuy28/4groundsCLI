@@ -43,7 +43,30 @@ impl AppState {
         dir.clone()
     }
 }
+fn run_cli_trivia_game() {
+    // Specify the shell program explicitly to avoid "file not found" errors
+    let shell_program = "cmd"; // Change to your preferred shell if necessary
+    let shell_args = &[
+        "/C",
+        "npx cli-trivia-game && timeout /T 5", // Wait for 5 seconds before closing
+    ]; // Use && timeout /T 5 for Windows cmd// Command to run in Alacritty
 
+    // Try spawning the shell with the specified command
+    let result = Command::new("alacritty")
+        .args(&["-e", shell_program]) // Execute the shell
+        .args(shell_args) // Pass command to the shell
+        .spawn();
+
+    // Handle potential errors
+    match result {
+        Ok(_) => println!("Alacritty launched with the trivia game."),
+        Err(e) => eprintln!("Failed to launch Alacritty: {:?}", e),
+    }
+}
+#[tauri::command]
+fn run_trivia_game() {
+    run_cli_trivia_game();
+}
 
 #[tauri::command]
 fn run_command(state: State<AppState>, input: String) -> Result<String, String> {
@@ -153,7 +176,7 @@ fn main() {
     // Khởi chạy ứng dụng Tauri
     tauri::Builder::default()
         .manage(tauri_state) // Quản lý state trong Tauri
-        .invoke_handler(tauri::generate_handler![run_command])
+        .invoke_handler(tauri::generate_handler![run_command, run_trivia_game])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

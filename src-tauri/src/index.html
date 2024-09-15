@@ -115,10 +115,9 @@
   <div class="container-fluid vh-100 d-flex flex-column">
     <div data-tauri-drag-region class="titlebar">
       <div class="custom-buttons"> 
-          <!-- <div class="custom-button" id="ai_agent">
-             <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgMzAgMzAiPjxwYXRoIGZpbGw9IndoaXRlIiBkPSJNNS4zNyAxNi4xOHEuOTc1LS4wNDUgMS42NS0uNzVjLjQ1LS40Ny42OC0xLjAzLjY4LTEuNjhjMCAuNjUuMjIgMS4yMS42NyAxLjY4cS42NzUuNzA1IDEuNjUuNzVxLS45NzUuMDQ1LTEuNjUuNzVhMi4zNCAyLjM0IDAgMCAwLS42NyAxLjY4YzAtLjY1LS4yMi0xLjIxLS42OC0xLjY4cS0uNjc1LS43MDUtMS42NS0uNzVtMi4zMy03LjJxMS44OS0uMDkgMy4yMS0xLjQ3Yy44OC0uOTIgMS4zMi0yLjAxIDEuMzItMy4yOGMwIDEuMjcuNDQgMi4zNiAxLjMyIDMuMjhzMS45NSAxLjQgMy4yMiAxLjQ3Yy0uODMuMDQtMS41OS4yNy0yLjI5LjcxYy0uNjkuNDMtMS4yNCAxLjAxLTEuNjUgMS43M2MtLjQuNzItLjYgMS40OS0uNiAyLjMzYzAtMS4yNy0uNDQtMi4zNy0xLjMyLTMuMjljLS44OC0uOTMtMS45NS0xLjQyLTMuMjEtMS40OG0zLjMyIDEwLjc3Yy45NS0uMDQgMS43Ni0uNDEgMi40Mi0xLjFzLjk5LTEuNTEuOTktMi40N2MwIC45Ni4zMyAxLjc4Ljk5IDIuNDdzMS40NiAxLjA2IDIuNDEgMS4xYy0uOTUuMDQtMS43NS40MS0yLjQxIDEuMXMtLjk5IDEuNTEtLjk5IDIuNDdjMC0uOTYtLjMzLTEuNzgtLjk5LTIuNDdhMy41IDMuNSAwIDAgMC0yLjQyLTEuMW02LjgxLTQuNzRjLjk1LS4wNCAxLjc1LS40MSAyLjQxLTEuMXMuOTgtMS41MS45OC0yLjQ4YzAgLjk2LjMzIDEuNzguOTkgMi40N3MxLjQ3IDEuMDYgMi40MiAxLjFjLS45NS4wNC0xLjc2LjQxLTIuNDIgMS4xcy0uOTkgMS41MS0uOTkgMi40N2MwLS45Ni0uMzMtMS43OC0uOTgtMi40N2MtLjY2LS42OC0xLjQ2LTEuMDUtMi40MS0xLjA5Ii8+PC9zdmc+" alt="ai_agent" width="35" height="35">
-
-          </div> -->
+          <div class="custom-button" id="education">
+             <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxLjJyZW0iIGhlaWdodD0iMS4ycmVtIiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIyIj48cGF0aCBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwIiBzdHJva2UtZGFzaGFycmF5PSI2NCIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjY0IiBkPSJNMjIgM3YxNGMwIDAuNTUgLTAuNDUgMSAtMSAxaC0xNGMtMC41NSAwIC0xIC0wLjQ1IC0xIC0xdi0xNGMwIC0wLjU1IDAuNDUgLTEgMSAtMWgxNGMwLjU1IDAgMSAwLjQ1IDEgMVoiPjxhbmltYXRlIGZpbGw9ImZyZWV6ZSIgYXR0cmlidXRlTmFtZT0iZmlsbC1vcGFjaXR5IiBiZWdpbj0iMS45cyIgZHVyPSIwLjE1cyIgdmFsdWVzPSIwOzAuMyIvPjxhbmltYXRlIGZpbGw9ImZyZWV6ZSIgYXR0cmlidXRlTmFtZT0ic3Ryb2tlLWRhc2hvZmZzZXQiIGR1cj0iMC42cyIgdmFsdWVzPSI2NDswIi8+PC9wYXRoPjxwYXRoIHN0cm9rZS1kYXNoYXJyYXk9IjEwIiBzdHJva2UtZGFzaG9mZnNldD0iMTAiIGQ9Ik0xMCA2aDgiPjxhbmltYXRlIGZpbGw9ImZyZWV6ZSIgYXR0cmlidXRlTmFtZT0ic3Ryb2tlLWRhc2hvZmZzZXQiIGJlZ2luPSIwLjdzIiBkdXI9IjAuMnMiIHZhbHVlcz0iMTA7MCIvPjwvcGF0aD48cGF0aCBzdHJva2UtZGFzaGFycmF5PSIxMCIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjEwIiBkPSJNMTAgMTBoOCI+PGFuaW1hdGUgZmlsbD0iZnJlZXplIiBhdHRyaWJ1dGVOYW1lPSJzdHJva2UtZGFzaG9mZnNldCIgYmVnaW49IjAuOXMiIGR1cj0iMC4ycyIgdmFsdWVzPSIxMDswIi8+PC9wYXRoPjxwYXRoIHN0cm9rZS1kYXNoYXJyYXk9IjYiIHN0cm9rZS1kYXNob2Zmc2V0PSI2IiBkPSJNMTAgMTRoNSI+PGFuaW1hdGUgZmlsbD0iZnJlZXplIiBhdHRyaWJ1dGVOYW1lPSJzdHJva2UtZGFzaG9mZnNldCIgYmVnaW49IjEuMXMiIGR1cj0iMC4ycyIgdmFsdWVzPSI2OzAiLz48L3BhdGg+PHBhdGggc3Ryb2tlLWRhc2hhcnJheT0iMzYiIHN0cm9rZS1kYXNob2Zmc2V0PSIzNiIgZD0iTTIgNnYxNWMwIDAuNTUgMC40NSAxIDEgMWgxNSI+PGFuaW1hdGUgZmlsbD0iZnJlZXplIiBhdHRyaWJ1dGVOYW1lPSJzdHJva2UtZGFzaG9mZnNldCIgYmVnaW49IjEuNHMiIGR1cj0iMC41cyIgdmFsdWVzPSIzNjswIi8+PC9wYXRoPjwvZz48L3N2Zz4=" alt="education" width="20" height="20">
+          </div>
       </div>
       <div class="titlebar-buttons">
         <div class="titlebar-button" id="titlebar-minimize">
@@ -204,6 +203,30 @@
             return false;
         });
     }
+        function checkRiskyCom(command) {
+      return fetch('http://127.0.0.1:4000/risk_classify', {  // URL của API kiểm tra command
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ command: command })  // Gửi command dưới dạng JSON
+      })
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok.');
+          }
+          return response.json();
+      })
+      .then(result => {
+          // Giả sử API trả về {"classification": "Risky"} hoặc {"classification": "Non-Risky"}
+          return result.classification === 'Risky';  // Trả về true nếu lệnh là "Risky"
+      })
+      .catch(err => {
+          console.error('Risky Command Detection Error:', err);
+          terminal.innerHTML += `<div style="color:red;">Risky Command Detection Error: ${err.message}</div>`;
+          return false;  // Trả về false nếu có lỗi
+      });
+    }
    // Send command to FastAPI auto endpoint
      function sendToAutoAPI(command) {
         fetch('http://127.0.0.1:8000/auto/', {  // Replace with your actual API endpoint
@@ -230,8 +253,6 @@
 function createPopup() {
   // Create a new window
   const popupWindow = window.open('', 'Night Owl Popup', 'width=300,height=200');
-
-
 
   // Create the content for the popup
   const popupContent = `
@@ -279,11 +300,11 @@ function createPopup() {
     </head>
     <body>
       <div class="block">
-        <textarea class="text-box" rows="3" placeholder="Enter text here"></textarea>
+        <textarea class="text-box" id="inputText" rows="3" placeholder="Enter text here"></textarea>
       </div>
       <div class="block">
         <div class="result">
-          <strong>Result:</strong> <span>meow</span>
+          <strong>Result:</strong> <span id="resultText">meow</span>
         </div>
       </div>
     </body>
@@ -293,8 +314,40 @@ function createPopup() {
   // Write the content to the popup window
   popupWindow.document.write(popupContent);
   popupWindow.document.close();
-}
 
+  // Add the script to the popup window
+  const script = popupWindow.document.createElement('script');
+  script.textContent = `
+    function callApi() {
+      const inputText = document.getElementById('inputText').value;
+
+      // Example API call using Fetch (replace with your API URL and handling)
+      fetch('http://127.0.0.1:8000/agent/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ question: inputText }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('resultText').textContent = data.answer || 'No result found';
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+          document.getElementById('resultText').textContent = 'Error fetching data';
+        });
+    }
+
+    document.getElementById('inputText').addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        callApi();
+      }
+    });
+  `;
+  popupWindow.document.body.appendChild(script);
+}
 
     document.addEventListener('DOMContentLoaded', fetchCurrentDirectory);
       input.addEventListener('keydown', async function(event) {
@@ -338,25 +391,22 @@ function createPopup() {
           terminal.innerHTML += `<div style="color:red;">meow</div>`;
           /// vao duo
           
-          block = createPopup()
+          block = createPopup();
 
           terminal.innerHTML += `<div style="color:red;">meow</div>`;
 
           
         }
-                  
-          
-          
         }
-
       }
-         
-  
-    
     );
 
   </script>
   <script>
+    document
+      .getElementById('education')
+      .addEventListener('click',  async () => { try { await window.__TAURI__.invoke('run_trivia_game'); console.log('Trivia game started successfully!'); } catch (error) { console.error('Failed to start the trivia game:', error); } });
+
     document
       .getElementById('titlebar-minimize')
       .addEventListener('click', () => window.__TAURI__.window.appWindow.minimize())
