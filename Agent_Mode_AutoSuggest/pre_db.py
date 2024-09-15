@@ -24,7 +24,7 @@ def save_vector_db(
 
 if __name__ == "__main__":
     embedding = get_huggingface_embedding()
-    documents = load_data("./datapickle/git_commands.pkl")
+    documents = load_data("./datapickle/all_commands.pkl")
     print(documents[0])
     save_vector_db(documents, embedding, path="./faiss/data")
    

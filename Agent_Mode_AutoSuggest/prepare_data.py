@@ -44,6 +44,6 @@ def prepare(file_path: str, file_destination_path: str):
 
 if __name__ == "__main__":
     prepare(
-        "./git_commands.docx",
-        "./datapickle/git_commands.pkl",
+        "./all_commands.docx",
+        "./datapickle/all_commands.pkl",
     )

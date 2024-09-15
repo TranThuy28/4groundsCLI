@@ -39,8 +39,7 @@ class BasicRAG:
         Đây là tài liệu được cung cấp: {context}
         Đây là những kí tự đầu của 1 lệnh command lines: {question}
         Dựa vào những kí tự đầu {question}, hãy đưa ra đầy đủ câu lệnh command lines đó.
-
-        
+        Không đưa ra thêm bất cứ điều gì khác!        
         Nếu kí tự đầu vào không thể là bất kì lệnh command lines nào, thì không trả về gì cả. 
         """
         self.prompt = ChatPromptTemplate.from_template(template)
